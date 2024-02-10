@@ -1,0 +1,19 @@
+# .gitignore
+
+build/
+devel/
+.vscode/
+*/.vscode/
+
+# Log files and directories
+/log/
+/logs/
+*.log
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Catkin generated files
+/.catkin_workspace
+/CMakeLists.txt.user
