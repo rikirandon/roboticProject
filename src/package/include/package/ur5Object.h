@@ -23,8 +23,8 @@ private:
     //D-H paramiters
     Vector6d A, D, Alpha;
     //Polinomial Coefficients
-    Eigen::Matrix<double, 4, 3> PC;
-
+    Eigen::Matrix<double, 4, 3> positionPC;
+    Eigen::Matrix<double, 4, 3> orentationPC;
 
     Vector3d xs, xf, phis, phif;
 

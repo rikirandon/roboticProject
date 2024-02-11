@@ -24,7 +24,7 @@ int main(int argc, char** argv){
     std::array<double, 6> freq = {0.2, 0.0, 0.0, 0.0, 0.0, 0.0}; // Frequency
     //std::array<double, 6> q_des;
     std::array<double, 6> q_des0 = { -0.32,-0.78, -2.56,-1.63, -1.57, 3.49};
-    myPub.initFilter(q_des0);
+
 
     while (ros::ok()) {
         for (size_t i = 0; i < 6; ++i) {

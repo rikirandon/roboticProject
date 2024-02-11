@@ -50,9 +50,9 @@ int main(){
 
 
     //test jacobian
-
-   // Matrix6d jac = ur5.Jacobian(Theta);
+    // Matrix6d jac = ur5.Jacobian(Theta);
     //print_eigen("Jacobian ", jac);
+
 
     // test ur5.phid()
     /*
@@ -62,7 +62,7 @@ int main(){
     }
     */
 
-    // gripper
+    // test gripper
     Eigen::VectorXd finger = ur5.moveGripper(40 ,60 ,0.0 ,2.0 );
     print_eigen("finger", finger);
 
@@ -74,10 +74,6 @@ int main(){
     //print_eigen("IDK_wFB", TH);
 
     
-    
-    // create ur5 object
 
-
-    // idk
     return 0;
 }

@@ -43,40 +43,41 @@ int main(int argc, char** argv){
     Eigen::MatrixXd TH = ur5.IDK_wFB(Theta, 0.0, 5.0);
     
 
-//while (ros::ok() && flag == 1) {
-    for(int j = 0; j < TH.cols(); j++ ){
-        for (int i = 0; i < 6; i++){
-            myPub.q_des[i] = TH(i,j);
+    while (ros::ok()) {
+        
+        for(int j = 0; j < TH.cols(); j++ ){
+            for (int i = 0; i < 6; i++){
+                myPub.q_des[i] = TH(i,j);
+            }
+            myPub.send_des_jstate();
+            loop_rate.sleep();
         }
-        myPub.send_des_jstate();
-        loop_rate.sleep();
-    }
 
-    Eigen::VectorXd finger = ur5.moveGripper(40, 60, 0, 2);
-    for (int i = 0; i < finger.size(); i++){
-        myPub.f_des = finger(i);
-        myPub.send_des_jstate();
-        loop_rate.sleep();
-    }
-
-
-
-
-    std::cout << "MIAIOIJHIV;IVLIUBNUJGBIYFBKNYG";
-    Vector3d x2(-0.5, -0.45, 0.655001 );
-    Vector3d phi2(0.0, 0.0, 0.0);
-    ur5.setPoints(x1, x2, phi1, phi2);
-    ur5.polinomialCofficients(0.0, 5.0);
-    Eigen::MatrixXd TH2 = ur5.IDK_wFB(TH.rightCols(1), 0.0, 5.0);
-
-    for(int j = 0; j < TH.cols(); j++ ){
-        for (int i = 0; i < 6; i++){
-            myPub.q_des[i] = TH2(i,j);
+        Eigen::VectorXd finger = ur5.moveGripper(40, 60, 0, 2);
+        for (int i = 0; i < finger.size(); i++){
+            myPub.f_des = finger(i);
+            myPub.send_des_jstate();
+            loop_rate.sleep();
         }
-        myPub.send_des_jstate();
-        loop_rate.sleep();
-    }
 
+
+        Vector3d x2(-0.5, -0.45, 0.655001 );
+        Vector3d phi2(0.0, 0.0, 0.0);
+        ur5.setPoints(x1, x2, phi1, phi2);
+        ur5.polinomialCofficients(0.0, 5.0);
+        Eigen::MatrixXd TH2 = ur5.IDK_wFB(TH.rightCols(1), 0.0, 5.0);
+
+        for(int j = 0; j < TH.cols(); j++ ){
+            for (int i = 0; i < 6; i++){
+                myPub.q_des[i] = TH2(i,j);
+            }
+            myPub.send_des_jstate();
+            loop_rate.sleep();
+        }
+
+
+        return 0;
+    }
 
     
 

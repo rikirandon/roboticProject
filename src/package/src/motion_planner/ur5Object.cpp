@@ -237,7 +237,7 @@ Eigen::MatrixXd UR5::IDK_wFB(const Vector6d& TH0, double minT, double maxT) {
 Vector3d UR5::xd(double t){
     Vector3d xd;
     for (int i = 0; i<3; ++i){
-        xd(i) = PC(0, i) + PC(1, i) * t + PC(2, i) * t * t + PC(3, i) * t * t * t;
+        xd(i) = positionPC(0, i) + positionPC(1, i) * t + positionPC(2, i) * t * t + positionPC(3, i) * t * t * t;
     }
     return xd;
 }
@@ -245,23 +245,28 @@ Vector3d UR5::xd(double t){
 // Function to calculate the desired end-effector orientation at time t using linear interpolation
 Vector3d UR5::phid(double t){
     Vector3d phid;
-    t = t/5;
-    phid = t*phif + (1-t) * phis;
+    for (int i = 0; i<3; ++i){
+        phid(i) = orentationPC(0, i) + orentationPC(1, i) * t + orentationPC(2, i) * t * t + orentationPC(3, i) * t * t * t;
+    }
     return phid;
 }
 
 // Function to calculate polynomial coefficients for trajectory planning
 void UR5::polinomialCofficients(double minT, double maxT){
- for (int i = 0; i < 3; ++i) {
+
+    for (int i = 0; i < 3; ++i) {
         Matrix4d M;
         M << 1, minT, minT * minT, minT * minT * minT,
              0, 1, 2 * minT, 3 * minT * minT,
              1, maxT, maxT * maxT, maxT * maxT * maxT,
              0, 1, 2 * maxT, 3 * maxT * maxT;
-
         Vector4d b;
+        // position coiefficients
         b << xs(i), 0, xf(i), 0;
-        PC.col(i) = M.inverse() * b;
+        positionPC.col(i) = M.inverse() * b;
+        // orentation coiefficients
+        b << phis(i), 0, phif(i), 0;
+        orentationPC.col(i) = M.inverse() * b;
     }
 
 }
