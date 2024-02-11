@@ -3,7 +3,7 @@
 import rospy
 from motion_planner.srv import coordinates
 from motion_planner.srv import coordinatesResponse
-
+import numpy as np
 
 block_1 = (0.5, 0.0, 0.3, 0.0, 0.0, 0.0)
 block_2 = (0.7, 0.1, -0.3, 0.0, 0.0, 0.0)
