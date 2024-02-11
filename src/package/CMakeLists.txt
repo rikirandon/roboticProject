@@ -52,6 +52,10 @@ include_directories(
 add_executable(testObject src/motion_planner/ur5Object.cpp src/tests/testObject.cpp)
 target_link_libraries(testObject ${catkin_LIBRARIES} ${Eigen_LIBRARIES})
 
+# test_node
+add_executable(test_node src/tests/test_node.cpp)
+target_link_libraries(test_node ${catkin_LIBRARIES})
+
 add_executable(testJointStatePublisher src/motion_planner/jointStatePublisher.cpp src/tests/testJointStatePublisher.cpp)
 target_link_libraries(testJointStatePublisher ${catkin_LIBRARIES})
 

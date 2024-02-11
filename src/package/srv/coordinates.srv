@@ -1,3 +1,4 @@
+
 ---
 geometry_msgs/Pose [] poseStart
 geometry_msgs/Pose [] poseFinal
