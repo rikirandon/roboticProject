@@ -49,6 +49,7 @@ void moveBrickTo(Vector3d& poseStart, Vector3d&  poseFinal, JointStatePublisher&
         Matrix4d direct = ur5.Direct(Theta); 
         Matrix3d Re = direct.block(0, 0, 3, 3);
         lastPhi = ur5.rotm2eul(Re);
+        lastX = direct.col(3).head(3);
         moveGripper(40, 70, myPub, ur5,  loop_rate);
         firstTime = !firstTime;
     }
