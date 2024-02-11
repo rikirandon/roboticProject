@@ -1,5 +1,6 @@
 #include <ros/ros.h>
-#include <roboticProject/coordinate.h> 
+#include <package/coordinates.h> 
+#include "std_msgs/Float64MultiArray.h"
 #include <iostream>
 
 int main(int argc, char** argv) {
@@ -7,25 +8,25 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh;
 
     // Simulazione della chiamata del servizio al nodo vision
-    ros::ServiceClient client = nh.serviceClient<coordinate::Coordinate>("vision");
-
+    ros::ServiceClient client = nh.serviceClient<package::coordinates>("coordinates");
+    package::coordinates srv;
+    package::coordinates::Request req;
     // Chiamate successive fino a quando la lista di blocchi non è vuota
     while (ros::ok()) {
-        // Creazione di un oggetto Coordinate per inviarlo al nodo vision
-        coordinate::poseStart srv;
-
+    	
         // Chiamata al servizio
-        if (client.call(srv)) {
+        if (client.call(req, srv)) {
             ROS_INFO("Chiamata al servizio avvenuta con successo");
             // Stampa delle coordinate acquisite
-            std::cout << "Coordinate acquisite: x = " << srv.response.x << ", y = " << srv.response.y << std::endl;
+            std_msgs::Float64MultiArray poseStart = srv.response.poseStart;
+            std::cout << "Coordinate acquisite: x = " << poseStart.data[0] << ", y = " << poseStart.data[1] << ", z = " <<poseStart.data[2]<< std::endl;
         } else {
             ROS_ERROR("Errore durante la chiamata al servizio");
             return 1;
         }
 
         // Controllo se la lista di blocchi è vuota
-        if (/* Condizione per controllare se la lista di blocchi è vuota */) {
+        if (!srv.response.flag) {
             ROS_INFO("Lista di blocchi vuota. Terminazione del programma.");
             break; // Esci dal ciclo while
         }
