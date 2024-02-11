@@ -3,6 +3,8 @@
 import rospy
 from motion_planner.srv import coordinates
 from motion_planner.srv import coordinatesResponse
+from geometry_msgs.msg import Pose
+
 import numpy as np
 
 block_1 = (0.5, 0.0, 0.3, 0.0, 0.0, 0.0)
@@ -34,12 +36,23 @@ def vision():
 
 def handle_coordinates(req):
     # Questa è la funzione di callback che gestisce le richieste del servizio
+    pose = Pose()
     rospy.loginfo("Richiesta di coordinate ricevuta")
     robot_coords = transform_vector(blocks[i])
+    pose.position.x= robot_coords[0]
+    pose.position.y= robot_coords[1]
+    pose.position.z= robot_coords[2]
+    pose.position.w = robot_coords[3:]
+    
+    final_pose = Pose()
     final_coords= final[i]
+    final_pose.position.x= final_coords[0]
+    final_pose.position.y= final_coords[1]
+    final_pose.position.z= final_coords[2]
+    final_pose.position.w = final_coords[3:]
     response = coordinatesResponse()
-    response.poseStart= robot_coords
-    response.poseFinale= final_coords
+    response.poseStart= pose
+    response.poseFinale= final_pose
     if(i==2):
         response.flag = False
     rospy.loginfo("Risposta alle coordinate: x=%f, y=%f, z=%f", response.x, response.y)

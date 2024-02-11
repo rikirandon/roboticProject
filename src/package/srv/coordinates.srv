@@ -1,4 +1,4 @@
 ---
-std_msgs/Float64MultiArray poseStart
-std_msgs/Float64MultiArray poseFinal
+geometry_msgs/Pose [] poseStart
+geometry_msgs/Pose [] poseFinal
 bool flag
