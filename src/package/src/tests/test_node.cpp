@@ -1,6 +1,7 @@
 #include <ros/ros.h>
-#include <package/coordinates.h> 
+#include "package/coordinates.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "geometry_msgs/Pose.h"
 #include <iostream>
 
 int main(int argc, char** argv) {
@@ -10,28 +11,24 @@ int main(int argc, char** argv) {
     // Simulazione della chiamata del servizio al nodo vision
     ros::ServiceClient client = nh.serviceClient<package::coordinates>("coordinates");
     package::coordinates srv;
-    package::coordinates::Request req;
     // Chiamate successive fino a quando la lista di blocchi non è vuota
     while (ros::ok()) {
     	
         // Chiamata al servizio
-        if (client.call(req, srv)) {
+        if (client.call(srv)) {
             ROS_INFO("Chiamata al servizio avvenuta con successo");
             // Stampa delle coordinate acquisite
-            std_msgs::Float64MultiArray poseStart = srv.response.poseStart;
-            std::cout << "Coordinate acquisite: x = " << poseStart.data[0] << ", y = " << poseStart.data[1] << ", z = " <<poseStart.data[2]<< std::endl;
+            geometry_msgs::Pose poseStart = srv.response.poseStart;
+             geometry_msgs::Pose poseFinal = srv.response.poseFinal;
+            std::cout << "Coordinate poseStart: x = " << poseStart.position.x << ", y = " << poseStart.position.y << ", z = " <<poseStart.position.z<< std::endl;
+            std::cout << "Coordinate poseFInal: x = " << poseFinal.position.x << ", y = " << poseFinal.position.y << ", z = " <<poseFinal.position.z<< std::endl;
         } else {
             ROS_ERROR("Errore durante la chiamata al servizio");
             return 1;
         }
 
-<<<<<<< HEAD
         // Controllo se la lista di blocchi è vuota
         if (!srv.response.flag) {
-=======
-         // Controllo se la lista di blocchi è vuota
-        if (srv.response.block_list.empty()) {
->>>>>>> f4a928a5c9617e064583fbe306a5cc774eaafa31
             ROS_INFO("Lista di blocchi vuota. Terminazione del programma.");
             break; // Esci dal ciclo while
         }

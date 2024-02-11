@@ -1,5 +1,5 @@
 
 ---
-geometry_msgs/Pose [] poseStart
-geometry_msgs/Pose [] poseFinal
+geometry_msgs/Pose poseStart
+geometry_msgs/Pose poseFinal
 bool flag
