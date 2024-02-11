@@ -35,6 +35,12 @@ Save, exit.
 ```bash 
 source ~/.bashrc
 ```
+### Setup the world
+Into ``roboticProject/world`` folder bring the "blocks.world" file into the ``ros_ws/src/locosim/ros_impedance_controller/worlds`` folder.
+In ``ros_ws/src/locosim/robot_control/base_controllers/ur5_generic.py`` change the line 71 with:
+```
+self.world_name = 'blocks.world'
+```
 ## Directory Structure
 
 ### Directories
