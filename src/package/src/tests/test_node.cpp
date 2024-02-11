@@ -9,17 +9,29 @@ int main(int argc, char** argv) {
     // Simulazione della chiamata del servizio al nodo vision
     ros::ServiceClient client = nh.serviceClient<coordinate::Coordinate>("vision");
 
-    // Creazione di un oggetto Coordinate
-    coordinate::poseStart srv;
-   
-    // Chiamata al servizio
-    if (client.call(srv)) {
-        ROS_INFO("Chiamata al servizio avvenuta con successo");
-        // Stampa delle coordinate acquisite
-        std::cout << "Coordinate acquisite: x = " << srv.response.poseStart<< std::endl;
-    } else {
-        ROS_ERROR("Errore durante la chiamata al servizio");
-        return 1;
+    // Chiamate successive fino a quando la lista di blocchi non è vuota
+    while (ros::ok()) {
+        // Creazione di un oggetto Coordinate per inviarlo al nodo vision
+        coordinate::poseStart srv;
+
+        // Chiamata al servizio
+        if (client.call(srv)) {
+            ROS_INFO("Chiamata al servizio avvenuta con successo");
+            // Stampa delle coordinate acquisite
+            std::cout << "Coordinate acquisite: x = " << srv.response.x << ", y = " << srv.response.y << std::endl;
+        } else {
+            ROS_ERROR("Errore durante la chiamata al servizio");
+            return 1;
+        }
+
+        // Controllo se la lista di blocchi è vuota
+        if (/* Condizione per controllare se la lista di blocchi è vuota */) {
+            ROS_INFO("Lista di blocchi vuota. Terminazione del programma.");
+            break; // Esci dal ciclo while
+        }
+
+        // Aggiorna la frequenza di chiamata al servizio, se necessario
+        ros::Duration(5.0).sleep(); // Attendi 1 secondo prima della prossima chiamata
     }
 
     return 0;
