@@ -25,8 +25,13 @@ int main(int argc, char** argv) {
             return 1;
         }
 
+<<<<<<< HEAD
         // Controllo se la lista di blocchi è vuota
         if (!srv.response.flag) {
+=======
+         // Controllo se la lista di blocchi è vuota
+        if (srv.response.block_list.empty()) {
+>>>>>>> f4a928a5c9617e064583fbe306a5cc774eaafa31
             ROS_INFO("Lista di blocchi vuota. Terminazione del programma.");
             break; // Esci dal ciclo while
         }
