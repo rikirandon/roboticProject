@@ -49,6 +49,7 @@ def handle_coordinates(req):
         
 def transform_vector(vector):
     m= np.zeros((4, 4))
+    vector_translation = vector[:3]
     m[0, 0] = 1
     m[0, 1] = 0
     m[0, 2] = 0
@@ -69,7 +70,7 @@ def transform_vector(vector):
     m[3, 2] = 0
     m[3, 3] = 1
 
-    homogeneous_vector = np.append(vector, 1)
+    homogeneous_vector = np.append(vector_translation, 1)
     transformed_vector = np.dot(m, homogeneous_vector)
     return transformed_vector[:-1]
 
