@@ -27,9 +27,9 @@ final = [
 
 def center_blocks(blocks):
     for block in blocks:
-        block[1]+=length
-        block[2]+=width
-        block[3]+=height
+        block[0]+=length
+        block[1]+=width
+        block[2]+=height
     return blocks
 
 def vision():
