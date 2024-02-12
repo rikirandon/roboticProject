@@ -69,29 +69,37 @@ python3 vision.py
 ### Directories
 
 ```bash
-├── README.md
-└── src  # Source Directory
-    ├── CMakeLists.txt -> /opt/ros/noetic/share/catkin/cmake/toplevel.cmake
-    └── package
-        ├── CMakeLists.txt
-        ├── include
-        │   └── package
-        │       ├── jointStatePublisher.h
-        │       └── ur5Object.h
-        ├── package.xml
-        ├── src
-        │   ├── motion_planner #Code related to motion planning functionality
-        │   │   ├── jointStatePublisher.cpp
-        │   │   └── ur5Object.cpp
-        │   ├── tests  #Code related to testing motion_planning funcionality
-        │   │   ├── testJointStatePublisher.cpp
-        │   │   ├── test_node.cpp
-        │   │   ├── testObject.cpp
-        │   │   └── testUr5Movement.cpp
-        │   └── vision #Code related to vision functionality
-        │       └── vision.py
-        └── srv #Service
-            └── coordinates.srv
+├── world
+│    └── blocks.world
+├── model
+│   └── X1-Y2-Z2
+├── build
+├── devel
+├── presentation
+│   ├── report_robotics.pdf
+│   └── Vroboticproject.mp4
+├── src
+│   └── package
+│       ├── include
+│       │   └── package
+│       │       ├── jointStatePublisher.h
+│       │       └── ur5Object.h
+│       ├── src
+│       │   ├── motion_planning
+│       │   │   ├── jointStatePublisher.cpp
+│       │   │   ├── motion_planner.cpp
+│       │   │   └── ur5Object.cpp
+│       │   ├── tests
+│       │   │   ├── testJointStatePublisher.cpp
+│       │   │   ├── test_node.cpp
+│       │   │   ├── testObject.cpp
+│       │   │   └── testUr5Movement.cpp
+│       │   └── vision
+│       │       └── vision.py
+│       └── srv
+│           └── coordinates.srv
+└── README.md
+
 ```
 
 
