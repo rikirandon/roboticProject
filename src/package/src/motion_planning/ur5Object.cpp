@@ -149,15 +149,6 @@ Vector6d UR5::IDK_newVelocity(Vector6d& q, Vector3d& xe, const Vector3d& xd, Vec
     T << cos(beta)*cos(gamma), -sin(gamma), 0,
         cos(beta)*sin(gamma), cos(gamma), 0,
         -sin(beta), 0, 1;
-
-    // if the determinant is fairly close to zero, it means that we are near a singular configurartion
-    if (abs(T.determinant()) < 1e-3){
-        std::cerr << "Near singular configuration\n ";
-        std::cerr << "alpha: " << phie(2) << ", beta: " << phie(1) << ", gamma: " << phie(0) << std::endl;
-        // choose a small damping factor
-        
-    }
-    
  
         
     // dotq = Jac_pseudo_inverse.inverse() * combine2Vector((vd + Kp * (xd - xe)), (phiddot + Kphi * (phid - phie)));

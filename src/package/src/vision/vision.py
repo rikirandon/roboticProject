@@ -63,9 +63,9 @@ def transform_vector(vector):
     m= np.zeros((4, 4))
     vector_translation = vector[:3]
     orientation_part = vector[3:]
-    m = [[1, 0, 0, 0.5],
+    m = [[1, 0, 0, -0.5],
         [0, -1, 0, 0.55],
-        [0, 0, -1, 0],
+        [0, 0, -1, 1.65],
         [0, 0, 0, 1]]
 
     homogeneous_vector = np.append(vector_translation, 1)

@@ -3,7 +3,13 @@
 
 // initalize all arrays with zeros
 JointStatePublisher::JointStatePublisher() {
-    q_des.fill(0.0); 
+    q_des[0] = -0.32;
+    q_des[1] = -0.78;
+    q_des[2] = -2.56;
+    q_des[3] = -1.63;
+    q_des[4] = -1.57;
+    q_des[5] = 3.49;
+   
     f_des = 0.0;
 }
 

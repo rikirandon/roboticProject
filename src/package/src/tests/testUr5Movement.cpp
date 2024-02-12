@@ -36,7 +36,7 @@ int main(int argc, char** argv){
     Vector3d xs = direct.col(3).head(3);
     Matrix3d Re = direct.block(0, 0, 3, 3);
     Vector3d phis = ur5.rotm2eul(Re);
-    Vector3d x1(0.151832, -0.190828, 0.655001 );
+    Vector3d x1(0.151832, -0.190828, 0.7 );
     Vector3d phi1(0.0, 0.0, 0);
     ur5.setPoints(xs, x1, phis, phi1);
     ur5.polinomialCofficients(0.0, 5.0);
@@ -61,7 +61,7 @@ int main(int argc, char** argv){
         }
 
 
-        Vector3d x2(-0.5, -0.45, 0.655001 );
+        Vector3d x2(-0.151832, -0.190828, 0.75 );
         Vector3d phi2(0.0, 0.0, 0.0);
         ur5.setPoints(x1, x2, phi1, phi2);
         ur5.polinomialCofficients(0.0, 5.0);

@@ -41,7 +41,7 @@ void moveJoints(Vector3d& xs, Vector3d& xf, Vector3d& phis, Vector3d& phif, Join
 
 
 void moveBrickTo(Vector3d& poseStart, Vector3d&  poseFinal, JointStatePublisher& myPub, ros::Rate loop_rate){
-    UR5 ur5(0.001, 2.0 * Matrix3d::Identity(), 2.0 * Matrix3d::Identity());
+    UR5 ur5(0.001, 1.0 * Matrix3d::Identity(), 1.0 * Matrix3d::Identity());
     Vector3d x1, x2, x3, x4, phi1, phi2, phi3, phi4;
     double ds, df;
     if (firstTime){
