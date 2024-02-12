@@ -9,10 +9,12 @@
 
 #define LOOP_FREQUENCY 1000.0
 
+// if it is the first movement it does 
 bool firstTime = true;
 Vector6d Theta;
 Vector3d lastX;
 Vector3d lastPhi;
+
 
 void moveGripper(double ds, double df, JointStatePublisher& myPub, UR5& ur5, ros::Rate loop_rate){
     Eigen::VectorXd finger = ur5.moveGripper(ds, df, 0, 2);
@@ -84,7 +86,7 @@ void moveBrickTo(Vector3d& poseStart, Vector3d&  poseFinal, JointStatePublisher&
 
 int main(int argc, char** argv){
     // node init
-    ros::init(argc, argv, "custom_joint_pub_node");
+    ros::init(argc, argv, "motion_planner_node");
     ros::NodeHandle nh;
     ros::Rate loop_rate(LOOP_FREQUENCY);
 
@@ -99,8 +101,6 @@ int main(int argc, char** argv){
     // client service init
     ros::ServiceClient client = nh.serviceClient<package::coordinates>("coordinates");
     package::coordinates srv;
-
-
 
     // main loop
     while (ros::ok()) {

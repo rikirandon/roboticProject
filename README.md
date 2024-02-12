@@ -27,20 +27,35 @@ cd roboticProject
 catkin_make
 nano ~/.bashrc
 ```
-Add the path for the setup.bash.
+Add the path at the and of the file setup.bash.
 ```bash
 source $HOME/roboticProject/devel/setup.bash
 ```
-Save, exit.
+Then execute.
 ```bash 
 source ~/.bashrc
 ```
 ### Setup the world
-Into ``roboticProject/world`` folder bring the "blocks.world" file into the ``ros_ws/src/locosim/ros_impedance_controller/worlds`` folder.
+Into ``roboticProject/world`` folder bring the "blocks.world" file into the ``ros_ws/install/share/ros_impedance_controller/worlds`` folder. 
+Then bring ``roboticProject/model/X1-Y2-Z2`` into ``ros_ws/install/share/ros_impedance_controller/model``.
 In ``ros_ws/src/locosim/robot_control/base_controllers/ur5_generic.py`` change the line 71 with:
 ```
 self.world_name = 'blocks.world'
 ```
+### Run the Code
+We need to run 3 different programs in 3 different terminal:
+- The ur5_generic in ``ros_ws/src/locosim/robot_control/base_controllers/``
+```
+python3 ur5_generic.py
+```
+- The vision node in ``roboticProject/src/package/src/vision/``
+```
+python3 vision.py
+```
+- The motion_planner node 
+  ```
+  rosrun package motion_planner
+  ```
 ## Directory Structure
 
 ### Directories

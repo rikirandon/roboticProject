@@ -206,7 +206,7 @@ Eigen::MatrixXd UR5::IDK_wFB(const Vector6d& TH0, double minT, double maxT) {
         // convert the current end effector orientation in euler angles
         phie = rotm2eul(Re);
 
-        // compute the desired end effector velocity
+        // compute the desired end effector velocity dotp_d
         vd = (xd(t)-xd(t-Dt))/Dt;
         // and desired angular velocity
         phiddot = (phid(t)-phid(t-Dt))/Dt;
@@ -273,6 +273,7 @@ double UR5::mapToGripperJoints(double diameter){
     // return gripper joint angles
     return atan2(delta, L);
 }
+
 // gripper movement function
 Eigen::VectorXd UR5::moveGripper(double ds, double df, double minT, double maxT){
     // build the polynomial coefficients 
