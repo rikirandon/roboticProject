@@ -5,6 +5,7 @@ devel/
 .vscode/
 */.vscode/
 */.DS_Store
+*.swo
 
 # Log files and directories
 /log/
