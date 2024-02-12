@@ -4,6 +4,7 @@ build/
 devel/
 .vscode/
 */.vscode/
+*/.DS_Store
 
 # Log files and directories
 /log/
