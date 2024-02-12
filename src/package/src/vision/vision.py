@@ -9,9 +9,9 @@ import numpy as np
 
 i = 0
 # height, width and length of the blocks
-length = 0.03
-width = 0.06
-height = 0.02
+length = 0.03/2
+width = 0.06/2
+height = 0.02/2
 
 
 blocks = [
