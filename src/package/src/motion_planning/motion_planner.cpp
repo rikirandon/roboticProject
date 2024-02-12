@@ -26,8 +26,8 @@ void moveGripper(double ds, double df, JointStatePublisher& myPub, UR5& ur5, ros
 void moveJoints(Vector3d& xs, Vector3d& xf, Vector3d& phis, Vector3d& phif, JointStatePublisher& myPub, UR5& ur5, ros::Rate loop_rate){
     
     ur5.setPoints(xs, xf, phis, phif);
-    ur5.polinomialCofficients(0.0, 5.0);
-    Eigen::MatrixXd TH = ur5.IDK_wFB(Theta, 0.0, 5.0);
+    ur5.polinomialCofficients(0.0, 3.0);
+    Eigen::MatrixXd TH = ur5.IDK_wFB(Theta, 0.0, 3.0);
     // public joints
     for(int j = 0; j < TH.cols(); j++ ){
         for (int i = 0; i < 6; i++){
@@ -50,7 +50,7 @@ void moveBrickTo(Vector3d& poseStart, Vector3d&  poseFinal, JointStatePublisher&
         Matrix3d Re = direct.block(0, 0, 3, 3);
         lastPhi = ur5.rotm2eul(Re);
         lastX = direct.col(3).head(3);
-        moveGripper(40, 70, myPub, ur5,  loop_rate);
+        moveGripper(40, 80, myPub, ur5,  loop_rate);
         firstTime = !firstTime;
     }
     phi2 << 0,0,0;
@@ -71,11 +71,11 @@ void moveBrickTo(Vector3d& poseStart, Vector3d&  poseFinal, JointStatePublisher&
 
     moveJoints(lastX, x1, lastPhi, phi1, myPub, ur5, loop_rate);
     moveJoints(x1, x2, phi1, phi2, myPub, ur5, loop_rate);
-    moveGripper(70, 10, myPub, ur5, loop_rate);
+    moveGripper(80, 10, myPub, ur5, loop_rate);
     moveJoints(x2, x1, phi2, phi1, myPub, ur5, loop_rate);
     moveJoints(x1, x3, phi1, phi3, myPub, ur5, loop_rate);
     moveJoints(x3, x4, phi3, phi4, myPub, ur5, loop_rate);
-    moveGripper(10, 70, myPub, ur5, loop_rate);
+    moveGripper(10, 80, myPub, ur5, loop_rate);
     moveJoints(x4, x3, phi4, phi3, myPub, ur5, loop_rate);
 
     lastX = x3;
