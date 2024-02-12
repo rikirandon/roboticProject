@@ -1,7 +1,7 @@
 
 # IntroRoboticProject
 
-Repository for the final project of the course "Fundamentals of Robotic".
+Repository for the final project of the course "Fundament of Robotic 2023/2024".
 
 Team members: Carlotta Cazzolli, Riccardo Randon, Martina Panini. 
 
@@ -11,9 +11,10 @@ The project involves the simulation of an ur5 manipulator equipped with a ZED ca
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- Eigen lib
+Before you begin, ensure you have Eigen lib installed:
+```
+sudo apt install libeigen3-dev
+```
 
 ## Setup the Workspace
 ### Clone the Repository
@@ -22,6 +23,19 @@ Before you begin, ensure you have the following installed:
 git clone https://github.com/rikirandon/roboticProject.git
 cd roboticProject
 ```
+### Setup the world
+- In ``roboticProject/world`` folder bring the "blocks.world" file into the ``ros_ws/install/share/ros_impedance_controller/worlds`` folder. 
+- Then bring ``roboticProject/model/X1-Y2-Z2`` into ``ros_ws/install/share/ros_impedance_controller/worlds/model``.
+- In ``ros_ws/src/locosim/robot_control/base_controllers/ur5_generic.py`` change at line 71 :
+```
+self.world_name = 'blocks.world'
+```
+- in ``ros_ws/src/locosim/robot_control/base_controllers/params.py`` at line 32 set True the variable:
+```
+'gripper_sim': True,
+```
+
+
 ### Build the Catkin Workspace
 ```bash
 catkin_make
@@ -35,14 +49,8 @@ Then execute.
 ```bash 
 source ~/.bashrc
 ```
-### Setup the world
-Into ``roboticProject/world`` folder bring the "blocks.world" file into the ``ros_ws/install/share/ros_impedance_controller/worlds`` folder. 
-Then bring ``roboticProject/model/X1-Y2-Z2`` into ``ros_ws/install/share/ros_impedance_controller/model``.
-In ``ros_ws/src/locosim/robot_control/base_controllers/ur5_generic.py`` change the line 71 with:
-```
-self.world_name = 'blocks.world'
-```
-### Run the Code
+
+## Run the Code
 We need to run 3 different programs in 3 different terminal:
 - The ur5_generic in ``ros_ws/src/locosim/robot_control/base_controllers/``
 ```
