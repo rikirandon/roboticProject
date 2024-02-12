@@ -44,7 +44,7 @@ self.world_name = 'blocks.world'
 ```
 ### Run the Code
 We need to run 3 different programs in 3 different terminal:
--The ur5_generic in ``ros_ws/src/locosim/robot_control/base_controllers/``
+- The ur5_generic in ``ros_ws/src/locosim/robot_control/base_controllers/``
 ```
 python3 ur5_generic.py
 ```
