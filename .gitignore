@@ -6,6 +6,7 @@ devel/
 */.vscode/
 */.DS_Store
 *.swo
+*.swp
 
 # Log files and directories
 /log/
