@@ -8,6 +8,11 @@ from geometry_msgs.msg import Pose
 import numpy as np
 
 i = 0
+# height, width and length of the blocks
+length = 0.03/2
+width = 0.06/2
+height = 0.02/2
+
 
 blocks = [
     [0.64, 0.6, 0.925, 0.0, 0.0, 0.0],
@@ -20,8 +25,12 @@ final = [
     [0.3, 0.7, 0.925, 0.0, 0.0, 0.0]]
 
 
-
-
+def center_blocks(blocks):
+    for block in blocks:
+        block[0]+=length
+        block[1]+=width
+        block[2]+=height
+    return blocks
 
 def vision():
     rospy.init_node('vision')  # Inizializza il nodo ROS
@@ -36,7 +45,7 @@ def handle_coordinates(req):
     # Questa è la funzione di callback che gestisce le richieste del servizio
     pose = Pose()
     rospy.loginfo("Richiesta di coordinate ricevuta")
-    robot_coords = transform_vector(blocks[i])
+    robot_coords = transform_vector(center_blocks(blocks)[i])
     pose.position.x= robot_coords[0]
     pose.position.y= robot_coords[1]
     pose.position.z= robot_coords[2]

@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
             ROS_INFO("Chiamata al servizio avvenuta con successo");
             // Stampa delle coordinate acquisite
             geometry_msgs::Pose poseStart = srv.response.poseStart;
-             geometry_msgs::Pose poseFinal = srv.response.poseFinal;
+            geometry_msgs::Pose poseFinal = srv.response.poseFinal;
             std::cout << "Coordinate poseStart: x = " << poseStart.position.x << ", y = " << poseStart.position.y << ", z = " <<poseStart.position.z<< std::endl;
             std::cout << "Coordinate poseFInal: x = " << poseFinal.position.x << ", y = " << poseFinal.position.y << ", z = " <<poseFinal.position.z<< std::endl;
         } else {

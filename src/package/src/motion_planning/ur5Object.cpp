@@ -252,10 +252,10 @@ void UR5::polinomialCofficients(double minT, double maxT){
              1, maxT, maxT * maxT, maxT * maxT * maxT,
              0, 1, 2 * maxT, 3 * maxT * maxT;
         Vector4d b;
-        // position coiefficients
+        // position coefficients
         b << xs(i), 0, xf(i), 0;
         positionPC.col(i) = M.inverse() * b;
-        // orentation coiefficients
+        // orentation coefficients
         b << phis(i), 0, phif(i), 0;
         orentationPC.col(i) = M.inverse() * b;
     }
